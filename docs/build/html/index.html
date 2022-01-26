@@ -31,8 +31,115 @@
 
           <div class="body" role="main">
             
-  <section id="welcome-to-climtools-s-documentation">
-<h1>Welcome to climtools’s documentation!<a class="headerlink" href="#welcome-to-climtools-s-documentation" title="Permalink to this headline">¶</a></h1>
+  <section id="module-climtools.temporal">
+<span id="welcome-to-climtools-s-documentation"></span><h1>Welcome to climtools’s documentation!<a class="headerlink" href="#module-climtools.temporal" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="climtools.temporal.cal_middle_time">
+<span class="sig-prename descclassname"><span class="pre">climtools.temporal.</span></span><span class="sig-name descname"><span class="pre">cal_middle_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#climtools.temporal.cal_middle_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>[summary]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>time_1</strong> (<em>[</em><em>type</em><em>]</em>) – [description]</p></li>
+<li><p><strong>time_2</strong> (<em>[</em><em>type</em><em>]</em>) – [description]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>[description]</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>[type]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="climtools.temporal.cal_timedelta_month">
+<span class="sig-prename descclassname"><span class="pre">climtools.temporal.</span></span><span class="sig-name descname"><span class="pre">cal_timedelta_month</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#climtools.temporal.cal_timedelta_month" title="Permalink to this definition">¶</a></dt>
+<dd><p>[summary]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>time</strong> (<em>[</em><em>type</em><em>]</em>) – [description]</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>[description]</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>[type]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="climtools.temporal.cal_timedelta_year">
+<span class="sig-prename descclassname"><span class="pre">climtools.temporal.</span></span><span class="sig-name descname"><span class="pre">cal_timedelta_year</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#climtools.temporal.cal_timedelta_year" title="Permalink to this definition">¶</a></dt>
+<dd><p>[summary]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>time</strong> (<em>[</em><em>type</em><em>]</em>) – [description]</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>[description]</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>[type]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="climtools.temporal.gen_time_bnds_stmp">
+<span class="sig-prename descclassname"><span class="pre">climtools.temporal.</span></span><span class="sig-name descname"><span class="pre">gen_time_bnds_stmp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resample</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#climtools.temporal.gen_time_bnds_stmp" title="Permalink to this definition">¶</a></dt>
+<dd><p>[summary]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>resample</strong> (<em>[</em><em>type</em><em>]</em>) – [description]</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>[description]</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>[type]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="climtools.temporal.get_temporal_resolution">
+<span class="sig-prename descclassname"><span class="pre">climtools.temporal.</span></span><span class="sig-name descname"><span class="pre">get_temporal_resolution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#climtools.temporal.get_temporal_resolution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the temporal resolution of a given xarray object from the time_bnds variable
+:param data: Input Dataset must contain at least the dimension “time_bnds”
+:type data: Dataset</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Name of the temporal resolution detected</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="climtools.temporal.temporal_downsampling">
+<span class="sig-prename descclassname"><span class="pre">climtools.temporal.</span></span><span class="sig-name descname"><span class="pre">temporal_downsampling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_resolution</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#climtools.temporal.temporal_downsampling" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function downsamples (averages) a given dataset to a given target resolution. The target resolutions must be coarser than the time resolution of the dataset provided.py</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>xarray.Dataset</em>) – Input Dataset. Must contain dimension time as well as the variable time_bnds for inferring the resolution</p></li>
+<li><p><strong>target_resolution</strong> (<em>string</em>) – Target Resolution.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>[description]</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>[type]</p>
+</dd>
+</dl>
+</dd></dl>
+
 <div class="toctree-wrapper compound">
 </div>
 </section>
