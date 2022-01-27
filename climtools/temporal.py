@@ -115,11 +115,6 @@ def gen_time_bnds_stmp(resample):
     return time_bnds.rename("time_bnds")
 
 
-
-
-
-
-    
 def temporal_downsampling(data, target_resolution):
     """This function downsamples (averages) a given dataset to a given target resolution. The target resolutions must be coarser than the time resolution of the dataset provided.py
     
@@ -154,20 +149,20 @@ def temporal_downsampling(data, target_resolution):
                 
         
         data_resample = data_weighted[resample_variables].resample(time = temporal_resolution_dict[target_resolution])
-        data = data_resample.sum()
+        data_result = data_resample.sum()
         
     else:
         data_resample = data[resample_variables].resample(time = temporal_resolution_dict[target_resolution])
         
-        data = data_resample.mean()
+        data_result = data_resample.mean()
 
     time_bnds = gen_time_bnds_stmp(data_resample)
-    data = data.assign_coords(time = time_bnds.time)
+    data_result = data_result.assign_coords(time = time_bnds.time)
     #return data, leftover_variables, time_bnds
 
-    data = xr.merge([data, time_bnds, data[leftover_variables]])
+    data_comb = xr.merge([data_result, time_bnds, data[leftover_variables]])
 
-    return data
+    return data_comb
     
 
 def is_leap_year(time):

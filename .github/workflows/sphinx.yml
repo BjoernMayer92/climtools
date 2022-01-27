@@ -1,0 +1,14 @@
+name: Sphinx
+
+on: push
+
+jobs: 
+  first-job: 
+    runs-on: ubuntu-latest
+    steps:
+      -name: Create rst files in climtools folder
+        run:
+      -name: Copy rst files to docs folder
+        run:
+      -name: make html
+        run:

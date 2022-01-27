@@ -1,14 +1,14 @@
 Welcome to climtools's documentation!
 =====================================
 
-.. automodule:: climtools.temporal
-	:members:
+
+
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
-
+   modules
 
 Indices and tables
 ==================
