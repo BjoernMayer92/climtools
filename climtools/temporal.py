@@ -57,8 +57,9 @@ def get_temporal_resolution(data):
 
     time_stmp = data.time
     time_bnds = data.time_bnds
-    timedelta = time_bnds.isel(bnds=1)-time_bnds.isel(bnds=0)
-    
+    time_max = time_bnds.isel(bnds=1)
+    time_min = time_bnds.isel(bnds=0)
+    timedelta = xr.apply_ufunc(np.subtract,time_max, time_min, dask="parallelized")
     data.data_vars
 
     
@@ -91,7 +92,7 @@ def cal_middle_time(time_1, time_2):
     return time
     
 
-def gen_time_bnds_stmp(resample):
+def gen_time_bnds_stmp(data, target_resolution):
     """[summary]
 
     Args:
@@ -100,8 +101,10 @@ def gen_time_bnds_stmp(resample):
     Returns:
         [type]: [description]
     """
-    time_bnds_min = resample.first().time_bnds.isel(bnds=0)
-    time_bnds_max = resample.last().time_bnds.isel(bnds=1)
+    resample = data.time_bnds.compute().resample(time = temporal_resolution_dict[target_resolution])
+
+    time_bnds_min = resample.first().isel(bnds=0)
+    time_bnds_max = resample.last().isel(bnds=1)
     
     time_bnds_min = xr.CFTimeIndex(time_bnds_min.values)
     time_bnds_max = xr.CFTimeIndex(time_bnds_max.values)
@@ -156,7 +159,7 @@ def temporal_downsampling(data, target_resolution):
         
         data_result = data_resample.mean()
 
-    time_bnds = gen_time_bnds_stmp(data_resample)
+    time_bnds = gen_time_bnds_stmp(data, target_resolution)
     data_result = data_result.assign_coords(time = time_bnds.time)
     #return data, leftover_variables, time_bnds
 
