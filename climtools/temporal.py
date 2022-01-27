@@ -27,7 +27,9 @@ def cal_timedelta_year(time):
     Returns:
         [type]: [description]
     """
-    timedelta = (365 + time.dt.is_leap_year)*timedelta_1D
+    leap_years = [is_leap_year(time_value) for time_value in time.values]
+
+    timedelta = (365 + np.array(leap_years))*timedelta_1D
     return timedelta
     
 
@@ -119,14 +121,21 @@ def gen_time_bnds_stmp(resample):
 
     
 def temporal_downsampling(data, target_resolution):
-    """
+    """This function downsamples (averages) a given dataset to a given target resolution. The target resolutions must be coarser than the time resolution of the dataset provided.py
     
-    
+    Args:
+        data (xarray.Dataset): Input Dataset. Must contain dimension time as well as the variable time_bnds for inferring the resolution
+        target_resolution (string): Target Resolution.
+
+    Returns:
+        [type]: [description]
     """
+
     variables = [variable_name for variable_name in data.data_vars]
     temporal_resolution = get_temporal_resolution(data)
     
     assert "time_bnds" in variables, "Dataset must have at least the dimension time_bnds"
+    assert target_resolution in temporal_resolution_dict.keys(), "Target Resolutin must be one of the following: {}".format(str(list(temporal_resolution_dict.keys())))
     assert list(temporal_resolution_dict).index(temporal_resolution) < list(temporal_resolution_dict).index(target_resolution), "Target resolution must be coarser than the temporal resoltion of the dataset"
     
     decomposition_dependent_variables = utils.decompose_dependent_variables(data, dimension="time")
@@ -160,4 +169,24 @@ def temporal_downsampling(data, target_resolution):
 
     return data
     
-    
+
+def is_leap_year(time):
+    """Checks whether a given cf.Datetime is actually a leap year. Function based on https://github.com/Unidata/cftime/blob/master/src/cftime/_cftime.pyx 
+
+    Args:
+        time (cftime.Datetime): Datetime to check
+    """
+
+    year = time.year
+    calendar = time.calendar
+
+    if calendar == "proleptic_gregorian":
+        if year % 4: # not divisible by 4
+            leap = False
+        elif year % 100: # not divisible by 100
+            leap = True
+        elif year % 400: # not divisible by 400
+            leap = False
+        else:
+            warnings.warn("Calendar not implemented yet")
+    return leap
