@@ -1,4 +1,4 @@
-name: climtools
+name: climtools_2
 channels:
   - anaconda
   - conda-forge
@@ -290,7 +290,6 @@ dependencies:
     - astetik==1.11.1
     - cachetools==4.2.1
     - chances==0.1.9
-    - climtools==0.1
     - future==0.18.2
     - geonamescache==1.2.0
     - google-auth==1.27.0
@@ -306,6 +305,7 @@ dependencies:
     - py==1.9.0
     - pyasn1-modules==0.2.8
     - pytest==6.1.2
+    - python-graphviz==0.19.1
     - pyyaml==5.3.1
     - seaborn==0.11.1
     - sklearn==0.0
@@ -313,4 +313,4 @@ dependencies:
     - talos==1.0
     - terminaltables==3.1.0
     - wrangle==0.6.7
-prefix: /home/bjoern/anaconda3/envs/climtools
+prefix: /home/bjoern/anaconda3/envs/climtools_2
