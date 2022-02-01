@@ -201,6 +201,7 @@ def is_leap_year(time):
 
     year = time.year
     calendar = time.calendar
+    leap = None
 
     if calendar == "proleptic_gregorian":
         if year % 4: # not divisible by 4
@@ -210,5 +211,7 @@ def is_leap_year(time):
         elif year % 400: # not divisible by 400
             leap = False
         else:
-            warnings.warn("Calendar not implemented yet")
+            leap = True
+    else:
+        warnings.warn("Calendar not implemented yet")
     return leap
