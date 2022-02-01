@@ -65,14 +65,17 @@ def get_temporal_resolution(data):
 
     
     if (timedelta == timedelta_1D).all():
+        logging.info("Timedelta day identified")
         return "day"
 
     timedelta_1M = cal_timedelta_month(time_stmp)
     if(timedelta == timedelta_1M).all():
+        logging.info("Timedelta month identified")
         return "month"
     
     timedelta_1Y = cal_timedelta_year(time_stmp)
     if(timedelta == timedelta_1Y).all():
+        logging.info("Timedelta year identified")
         return "year"
         
 
@@ -118,6 +121,26 @@ def gen_time_bnds_stmp(data, target_resolution):
     time_bnds = xr.concat([time_bnds_min, time_bnds_max], dim ="bnds")
     return time_bnds.rename("time_bnds")
 
+def cal_monthly_weights(data, target_resolution, time_dimension = "time"):
+    """[summary]
+
+    Args:
+        data ([type]): [description]
+        time_dim (str, optional): [description]. Defaults to "time".
+
+    Returns:
+        [type]: [description]
+    """
+
+    time = data.coords[time_dimension]
+    month_length = time.dt.daysinmonth
+    
+    groupby_string = ".".join([time_dimension,target_resolution])
+    
+    weights = month_length.groupby(groupby_string) /month_length.groupby(groupby_string).sum(dim=time_dimension)
+    
+    return weights
+
 
 def temporal_downsampling(data, target_resolution):
     """This function downsamples (averages) a given dataset to a given target resolution. The target resolutions must be coarser than the time resolution of the dataset provided.py
@@ -137,7 +160,7 @@ def temporal_downsampling(data, target_resolution):
     assert target_resolution in temporal_resolution_dict.keys(), "Target Resolutin must be one of the following: {}".format(str(list(temporal_resolution_dict.keys())))
     assert list(temporal_resolution_dict).index(temporal_resolution) < list(temporal_resolution_dict).index(target_resolution), "Target resolution must be coarser than the temporal resoltion of the dataset"
     
-    decomposition_dependent_variables = utils.decompose_dependent_variables(data, dimension="time")
+    decomposition_dependent_variables = utils.decompose_dependent_variables(data, dimensions=("time",))
     
     resample_variables = decomposition_dependent_variables["dependent"]
     leftover_variables = decomposition_dependent_variables["independent"]
@@ -145,7 +168,7 @@ def temporal_downsampling(data, target_resolution):
     
     
     if temporal_resolution =="month":
-        weights = get_monthly_weights(data, target_resolution)
+        weights = cal_monthly_weights(data, target_resolution)
         data_weighted = data.copy()
         for variable in resample_variables:
             if variable!="time_bnds":

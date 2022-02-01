@@ -1,4 +1,6 @@
 import xarray as xr
+import logging
+xr.set_options(keep_attrs = True)
 
 
 def decompose_dependent_variables(data, dimensions):
@@ -22,4 +24,20 @@ def decompose_dependent_variables(data, dimensions):
         else:
             independent_variables.append(variable)
             
+    logging.info("Dependent variables {} Independent Variables {}".format(dependent_variables, independent_variables))
+        
     return {"dependent": dependent_variables, "independent": independent_variables}
+
+
+def cal_weighting_factor(data, dimensions):
+    """
+    Args:
+        data ([type]): [description]
+        dimension ([type]): [description]
+    """
+
+    weights = data/data.sum(dim=dimensions)
+    weights_sum = weights.sum(dim=dimensions)
+    xr.testing.assert_allclose(weights_sum , xr.ones_like(weights_sum))
+    return weights    
+
