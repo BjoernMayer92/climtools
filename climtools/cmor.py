@@ -67,7 +67,7 @@ def cmor_save(data, parent_directory):
     cmor_path, cmor_file = gen_cmor_path_and_filename(data)
     comp_path = os.path.join(parent_directory, cmor_path)
     
-    os.makedirs(comp_path)
+    os.makedirs(comp_path, exist_ok=True)
     data.to_netcdf(os.path.join(comp_path, cmor_file))
 
     
