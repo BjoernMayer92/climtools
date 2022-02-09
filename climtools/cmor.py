@@ -53,6 +53,7 @@ def gen_cmor_path_and_filename(data):
     
     logging.info("Cmor Path: {}".format(cmor_path))
     logging.info("Cmoe File: {}".format(cmor_file))
+    return cmor_path, cmor_file
 
 
 def cmor_save(data, parent_directory):
