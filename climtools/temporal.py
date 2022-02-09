@@ -20,13 +20,13 @@ timedelta_1D = np.timedelta64(1,"D")
 
 
 def cal_timedelta_year(time):
-    """[summary]
+    """Calculates the duration for each year in each timestamp
 
     Args:
-        time ([type]): [description]
+        time (xarray.DataArray): DataArray containing cftime.Datetime Objects
 
     Returns:
-        [type]: [description]
+        [:obj: `np.array` of :obj: `timedelta64`]: [description]
     """
     leap_years = [is_leap_year(time_value) for time_value in time.values]
 
