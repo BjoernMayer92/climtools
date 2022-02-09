@@ -150,13 +150,13 @@ def temporal_downsampling(data, target_resolution):
         target_resolution (string): Target Resolution.
 
     Returns:
-        [type]: [description]
+        [xarray.Dataset]: Dataset with a new temporal resolution
     """
 
     variables = [variable_name for variable_name in data.data_vars]
     temporal_resolution = get_temporal_resolution(data)
     
-    assert "time_bnds" in variables, "Dataset must have at least the dimension time_bnds"
+    assert ("time_bnds" in variables) or ("time_bnds" in data.coords), "Dataset must have at least the dimension or coordinate time_bnds"
     assert target_resolution in temporal_resolution_dict.keys(), "Target Resolutin must be one of the following: {}".format(str(list(temporal_resolution_dict.keys())))
     assert list(temporal_resolution_dict).index(temporal_resolution) < list(temporal_resolution_dict).index(target_resolution), "Target resolution must be coarser than the temporal resoltion of the dataset"
     
@@ -176,7 +176,7 @@ def temporal_downsampling(data, target_resolution):
                 
         
         data_resample = data_weighted[resample_variables].resample(time = temporal_resolution_dict[target_resolution])
-        data_result = data_resample.sum()
+        data_result = data_resample.sum(skipna=False)
         
     else:
         data_resample = data[resample_variables].resample(time = temporal_resolution_dict[target_resolution])
@@ -185,7 +185,6 @@ def temporal_downsampling(data, target_resolution):
 
     time_bnds = gen_time_bnds_stmp(data, target_resolution)
     data_result = data_result.assign_coords(time = time_bnds.time)
-    #return data, leftover_variables, time_bnds
 
     data_comb = xr.merge([data_result, time_bnds, data[leftover_variables]])
 

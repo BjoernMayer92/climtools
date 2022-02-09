@@ -25,15 +25,12 @@ def check_neccessary_cmor(data):
     assert len(non_existent_attrs) == 0, "Attributes {} missing in data".format(non_existent_attrs)
     assert len(non_existent_coords)== 0, "Coordinates {} missing in data".format(non_existent_coords)
     
-
-def cmor_save(data, parent_directory):
-    """ Save a dataarray or dataset in conform with cmor regulations under the parent directory
+def gen_cmor_path_and_filename(data):
+    """Generates from the attributes a cmor path and a cmor filename
 
     Args:
-        data (xarray.DataArray or xarray.Dataset): Data to be saved
-        parent_directory (string): Path to the parent folder where the CMIP-folder structure starts 
+        data (xarray.DataArray or xarray.Dataset): xarray object for which the path and filename should be generated
     """
-
     check_neccessary_cmor(data)
     
     mip_era = data.mip_era
@@ -51,15 +48,27 @@ def cmor_save(data, parent_directory):
     grid_label = data.grid_label
     version_id = data.version_id
 
-    filepath = os.path.join(parent_directory, mip_era, activity_id, institution_id, source_id, experiment_id, member_id, table_id, variable_id, grid_label, version_id)
-    filename = "_".join([variable_id, table_id, source_id, experiment_id, member_id, grid_label])+".nc"
+    cmor_path = os.path.join(mip_era, activity_id, institution_id, source_id, experiment_id, member_id, table_id, variable_id, grid_label, version_id)
+    cmor_file = "_".join([variable_id, table_id, source_id, experiment_id, member_id, grid_label])+".nc"
+    
+    logging.info("Cmor Path: {}".format(cmor_path))
+    logging.info("Cmoe File: {}".format(cmor_file))
+    return cmor_path, cmor_file
 
-    logging.info("Path for file: {}".format(filepath))
-    logging.info("Filename: {}".format(filepath))
 
+def cmor_save(data, parent_directory):
+    """ Save a dataarray or dataset in conform with cmor regulations under the parent directory
 
-    os.makedirs(filepath)
-    data.to_netcdf(os.path.join(filepath, filename))
+    Args:
+        data (xarray.DataArray or xarray.Dataset): Data to be saved
+        parent_directory (string): Path to the parent folder where the CMIP-folder structure starts 
+    """
+
+    cmor_path, cmor_file = gen_cmor_path_and_filename(data)
+    comp_path = os.path.join(parent_directory, cmor_path)
+    
+    os.makedirs(comp_path, exist_ok=True)
+    data.to_netcdf(os.path.join(comp_path, cmor_file))
 
     
 def update_process_id(data, process_string):
