@@ -150,7 +150,7 @@ def temporal_downsampling(data, target_resolution):
         target_resolution (string): Target Resolution.
 
     Returns:
-        [type]: [description]
+        [xarray.Dataset]: Dataset with a new temporal resolution
     """
 
     variables = [variable_name for variable_name in data.data_vars]
@@ -176,7 +176,7 @@ def temporal_downsampling(data, target_resolution):
                 
         
         data_resample = data_weighted[resample_variables].resample(time = temporal_resolution_dict[target_resolution])
-        data_result = data_resample.sum()
+        data_result = data_resample.sum(skipna=False)
         
     else:
         data_resample = data[resample_variables].resample(time = temporal_resolution_dict[target_resolution])
@@ -185,7 +185,6 @@ def temporal_downsampling(data, target_resolution):
 
     time_bnds = gen_time_bnds_stmp(data, target_resolution)
     data_result = data_result.assign_coords(time = time_bnds.time)
-    #return data, leftover_variables, time_bnds
 
     data_comb = xr.merge([data_result, time_bnds, data[leftover_variables]])
 
