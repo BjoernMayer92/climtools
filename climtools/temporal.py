@@ -186,7 +186,7 @@ def temporal_downsampling(data, target_resolution):
     time_bnds = gen_time_bnds_stmp(data, target_resolution)
     data_result = data_result.assign_coords(time = time_bnds.time)
 
-    data_comb = xr.merge([data_result, time_bnds, data[leftover_variables]], combine_attrs="identical")
+    data_comb = xr.merge([data_result, time_bnds, data[leftover_variables]], combine_attrs="outer")
 
     return data_comb
     
