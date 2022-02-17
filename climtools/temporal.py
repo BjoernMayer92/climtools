@@ -176,12 +176,12 @@ def temporal_downsampling(data, target_resolution):
                 
         
         data_resample = data_weighted[resample_variables].resample(time = temporal_resolution_dict[target_resolution], keep_attrs=True)
-        data_result = data_resample.sum(skipna=False, keep_attrs=True)
+        data_result = data_resample.sum(skipna=False)
         
     else:
         data_resample = data[resample_variables].resample(time = temporal_resolution_dict[target_resolution], keep_attrs=True)
         
-        data_result = data_resample.mean(kepp_attrs=True)
+        data_result = data_resample.mean()
 
     time_bnds = gen_time_bnds_stmp(data, target_resolution)
     data_result = data_result.assign_coords(time = time_bnds.time)
