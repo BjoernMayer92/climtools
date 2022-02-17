@@ -22,7 +22,18 @@ def sellonlatbox(data, longitude_min, longitude_max, latitude_min, latitude_max,
     variables = utils.decompose_dependent_variables(data, getattr(data,latitude_dim).dims)
     dep_variables = variables["dependent"]
     ind_variables = variables["independent"]
+    lat = getattr(data,latitude_dim)
+    lon = getattr(data,longitude_dim)
 
-    mask = (data.lat < latitude_max) & (data.lat > latitude_min) & (data.lon > longitude_min) & (data.lon < longitude_max) 
+    if longitude_min > longitude_max:
+        lon_mask_end = (lon>longitude_min) & (lon <= 360)
+        lon_mask_sta = (lon>0) & (lon< longitude_max)
+        lon_mask = lon_mask_end | lon_mask_sta
+    else:
+        lon_mask = (lon > longitude_min) & (lon < longitude_max)
+
+    lat_mask = (lat > latitude_min)&(lat<latitude_max)
+
+    mask = lat_mask & lon_mask 
 
     return data.where(mask)

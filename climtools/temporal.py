@@ -20,13 +20,13 @@ timedelta_1D = np.timedelta64(1,"D")
 
 
 def cal_timedelta_year(time):
-    """[summary]
+    """Calculates the duration for each year in each timestamp
 
     Args:
-        time ([type]): [description]
+        time (xarray.DataArray): DataArray containing cftime.Datetime Objects
 
     Returns:
-        [type]: [description]
+        [:obj: `np.array` of :obj: `timedelta64`]: [description]
     """
     leap_years = [is_leap_year(time_value) for time_value in time.values]
 
@@ -35,13 +35,13 @@ def cal_timedelta_year(time):
     
 
 def cal_timedelta_month(time):
-    """[summary]
+    """Calculates the duration for each month in each timestamp
 
     Args:
-        time ([type]): [description]
+        time (xarray.DataArray): DataArray containing cftime.Datetime Objects
 
     Returns:
-        [type]: [description]
+        [:obj: `np.array` of :obj: `timedelta64`]: [description]
     """
     timedelta = time.dt.daysinmonth*timedelta_1D
     return timedelta
@@ -56,13 +56,11 @@ def get_temporal_resolution(data):
         str: Name of the temporal resolution detected
     """
 
-    time_stmp = data.time
-    time_bnds = data.time_bnds
+    time_stmp = data.time.compute()
+    time_bnds = data.time_bnds.compute()
     time_max = time_bnds.isel(bnds=1)
     time_min = time_bnds.isel(bnds=0)
     timedelta = xr.apply_ufunc(np.subtract,time_max, time_min, dask="parallelized")
-    data.data_vars
-
     
     if (timedelta == timedelta_1D).all():
         logging.info("Timedelta day identified")
@@ -77,6 +75,8 @@ def get_temporal_resolution(data):
     if(timedelta == timedelta_1Y).all():
         logging.info("Timedelta year identified")
         return "year"
+    else: 
+        raise Exception("No valid timedelta could be identified")
         
 
 
