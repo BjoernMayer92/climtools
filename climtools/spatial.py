@@ -40,7 +40,7 @@ def gen_lonlatbox_mask(data, longitude_min, longitude_max, latitude_min, latitud
         longitude_dim (str, optional): _description_. Defaults to "lon".
 
     Returns:
-        _type_: _description_
+        xarray.DataArray: Mask
     """
     lat = getattr(data,latitude_dim)
     lon = getattr(data,longitude_dim)
