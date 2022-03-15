@@ -22,6 +22,26 @@ def sellonlatbox(data, longitude_min, longitude_max, latitude_min, latitude_max,
     variables = utils.decompose_dependent_variables(data, getattr(data,latitude_dim).dims)
     dep_variables = variables["dependent"]
     ind_variables = variables["independent"]
+
+    mask = gen_lonlatbox_mask(data, longitude_min, longitude_max, latitude_min, latitude_max, latitude_dim = latitude_dim, longitude_dim = longitude_dim)
+
+    return data.where(mask)
+
+def gen_lonlatbox_mask(data, longitude_min, longitude_max, latitude_min, latitude_max, latitude_dim="lat", longitude_dim ="lon"):
+    """ Generates a mask for a longitude and latitude box for a given dataset. Longitude has to be in [0,360]
+
+    Args:
+        data (xarray.Dataset): Dataset for which mask is generated
+        longitude_min (_type_): Minimum longitude (Minimum not included)
+        longitude_max (_type_): Maximum longitude (Maximum not included)
+        latitude_min (_type_): Minimum latitude (Minimum not included)
+        latitude_max (_type_): Maximum latitude (Maximum not included)
+        latitude_dim (str, optional): _description_. Defaults to "lat".
+        longitude_dim (str, optional): _description_. Defaults to "lon".
+
+    Returns:
+        xarray.DataArray: Mask
+    """
     lat = getattr(data,latitude_dim)
     lon = getattr(data,longitude_dim)
 
@@ -32,8 +52,9 @@ def sellonlatbox(data, longitude_min, longitude_max, latitude_min, latitude_max,
     else:
         lon_mask = (lon > longitude_min) & (lon < longitude_max)
 
-    lat_mask = (lat > latitude_min)&(lat<latitude_max)
+    lat_mask = (lat > latitude_min) & (lat<latitude_max)
 
     mask = lat_mask & lon_mask 
+    return mask
 
-    return data.where(mask)
+
