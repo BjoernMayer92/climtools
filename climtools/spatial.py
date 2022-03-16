@@ -58,3 +58,21 @@ def gen_lonlatbox_mask(data, longitude_min, longitude_max, latitude_min, latitud
     return mask
 
 
+def apply_mask(data, mask):
+    """Applies a mask to a datast for all variables that have the same dimensions as the mask
+
+    Args:
+        data (xarray.Dataset): Dataset which should be masked
+        mask (xarray.DataArray): Mask
+
+    Returns:
+        xarray.Dataset: Masked data 
+    """
+    variable_dict = utils.decompose_dependent_variables(data,mask.dims)
+    
+    dep_variables = variable_dict["dependent"]
+    ind_variables = variable_dict["independent"]
+    
+    return xr.merge([data[ind_variables],data[dep_variables].where(mask)])
+
+
