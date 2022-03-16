@@ -2,8 +2,8 @@
 import logging
 import os
 
-necessary_cmor_attrs = ["mip_era","activity_id","institution_id", "source_id", "experiment_id","table_id","variable_id","grid_label"]
-necessary_cmor_coords = ["member_id"]
+necessary_cmor_attrs = ["mip_era","activity_id","institution_id", "source_id", "experiment_id","table_id","variable_id","grid_label","variant_label"]
+necessary_cmor_coords = []
 
 
 def check_neccessary_cmor(data):
@@ -38,7 +38,7 @@ def gen_cmor_path_and_filename(data, version_id):
     institution_id = data.institution_id
     source_id = data.source_id
     experiment_id = data.experiment_id
-    member_id = data.member_id.item()
+    variant_label = data.variant_label
     if "process_id" in data.attrs:
         table_id = data.attrs["process_id"]
     else:
@@ -47,8 +47,8 @@ def gen_cmor_path_and_filename(data, version_id):
     variable_id = data.variable_id
     grid_label = data.grid_label
 
-    cmor_path = os.path.join(mip_era, activity_id, institution_id, source_id, experiment_id, member_id, table_id, variable_id, grid_label, version_id)
-    cmor_file = "_".join([variable_id, table_id, source_id, experiment_id, member_id, grid_label])+".nc"
+    cmor_path = os.path.join(mip_era, activity_id, institution_id, source_id, experiment_id, variant_label, table_id, variable_id, grid_label, version_id)
+    cmor_file = "_".join([variable_id, table_id, source_id, experiment_id, variant_label, grid_label])+".nc"
     
     logging.info("Cmor Path: {}".format(cmor_path))
     logging.info("Cmoe File: {}".format(cmor_file))
