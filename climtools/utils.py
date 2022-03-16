@@ -1,5 +1,6 @@
 import xarray as xr
 import logging
+import datetime as datetime
 xr.set_options(keep_attrs = True)
 
 
@@ -41,3 +42,36 @@ def cal_weighting_factor(data, dimensions):
     xr.testing.assert_allclose(weights_sum , xr.ones_like(weights_sum))
     return weights    
 
+def add_history(data, processing_message):
+    """Appends  a new message with timestamp to the history attribute of a dataset
+
+    Args:
+        data (xarray.Dataset or xarray.DataArray): dataset or dataarray for which history is to be changed
+        processing_message (str): Message string
+    """
+    now = datetime.now()
+    timestamp = now.strftime("%Y-%m-%dT%H:%M:%SZ")
+    message_timestamped = " {} ; {} ".format(timestamp, processing_message)
+    data.attrs["history"] = data.attrs["history"] + message_timestamped
+    
+def add_table_id(data, processing_id):
+    """_summary_
+
+    Args:
+        data (_type_): _description_
+        processing_id (_type_): _description_
+    """
+
+    data.attrs["table_id"] = "_".join([data.attrs["table_id"], processing_id])
+
+def add_processing_attributes(data, processing_message, processing_id):
+    """Changes history and table_id attributes
+
+    Args:
+        data (xarray.Dataset or xarray.DataArray): 
+        processing_message (_type_): _description_
+        processing_id (_type_): _description_
+    """
+
+    add_table_id(data, processing_id)
+    add_history(data,processing_message)

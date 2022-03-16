@@ -188,6 +188,9 @@ def temporal_downsampling(data, target_resolution):
 
     data_comb = xr.merge([data_result, time_bnds, data[leftover_variables]], combine_attrs="override")
 
+    utils.add_processing_attributes(data_comb, processing_message="Temporal downsampling from {} to {}".format(temporal_resolution_dict[temporal_resolution],temporal_resolution_dict[target_resolution]) , table_id=temporal_resolution_dict[target_resolution])
+
+
     return data_comb
     
 
