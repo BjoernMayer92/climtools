@@ -1,6 +1,6 @@
 import xarray as xr
 import logging
-from datetime import datetime
+import datetime
 xr.set_options(keep_attrs = True)
 
 
@@ -49,7 +49,7 @@ def add_history(data, processing_message):
         data (xarray.Dataset or xarray.DataArray): dataset or dataarray for which history is to be changed
         processing_message (str): Message string
     """
-    now = datetime.now()
+    now = datetime.datetime.now()
     timestamp = now.strftime("%Y-%m-%dT%H:%M:%SZ")
     message_timestamped = " {} ; {} ".format(timestamp, processing_message)
     
