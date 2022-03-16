@@ -2,7 +2,7 @@
 import logging
 import os
 
-necessary_cmor_attrs = ["mip_era","activity_id","institution_id", "source_id", "experiment_id","table_id","variable_id","grid_label","version_id" ]
+necessary_cmor_attrs = ["mip_era","activity_id","institution_id", "source_id", "experiment_id","table_id","variable_id","grid_label"]
 necessary_cmor_coords = ["member_id"]
 
 
@@ -25,7 +25,7 @@ def check_neccessary_cmor(data):
     assert len(non_existent_attrs) == 0, "Attributes {} missing in data".format(non_existent_attrs)
     assert len(non_existent_coords)== 0, "Coordinates {} missing in data".format(non_existent_coords)
     
-def gen_cmor_path_and_filename(data):
+def gen_cmor_path_and_filename(data, version_id):
     """Generates from the attributes a cmor path and a cmor filename
 
     Args:
@@ -46,7 +46,6 @@ def gen_cmor_path_and_filename(data):
     table_id = data.table_id
     variable_id = data.variable_id
     grid_label = data.grid_label
-    version_id = data.version_id
 
     cmor_path = os.path.join(mip_era, activity_id, institution_id, source_id, experiment_id, member_id, table_id, variable_id, grid_label, version_id)
     cmor_file = "_".join([variable_id, table_id, source_id, experiment_id, member_id, grid_label])+".nc"
