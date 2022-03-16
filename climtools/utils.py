@@ -74,4 +74,4 @@ def add_processing_attributes(data, processing_message, processing_id):
     """
 
     add_table_id(data, processing_id)
-    add_history(data,processing_message)
+    add_history(data, processing_message)

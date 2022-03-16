@@ -73,7 +73,7 @@ def apply_mask(data, mask):
     ind_variables = variable_dict["independent"]
     
     data = xr.merge([data[ind_variables],data[dep_variables].where(mask)], combine_attrs="override")
-    utils.add_processing_attributes(data, processing_message="Applied mask" , table_id="masked")
+    utils.add_processing_attributes(data, processing_message="Applied mask" , processing_id="masked")
     
     return data 
 
