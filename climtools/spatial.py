@@ -3,7 +3,6 @@ xr.set_options(keep_attrs = True)
 from . import utils
 
 
-
 def sellonlatbox(data, longitude_min, longitude_max, latitude_min, latitude_max, latitude_dim = "lat", longitude_dim = "lon"):
     """Selects points of a given dataset that are in between the boundaries defined by latitude and longitudes mininmums and maximums
 
@@ -73,6 +72,6 @@ def apply_mask(data, mask):
     dep_variables = variable_dict["dependent"]
     ind_variables = variable_dict["independent"]
     
-    return xr.merge([data[ind_variables],data[dep_variables].where(mask)])
+    return xr.merge([data[ind_variables],data[dep_variables].where(mask)], combine_attrs="ovverride")
 
 
