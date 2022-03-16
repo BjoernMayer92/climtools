@@ -1,6 +1,6 @@
 import xarray as xr
 import logging
-import datetime as datetime
+from datetime import Datetime
 xr.set_options(keep_attrs = True)
 
 
@@ -52,18 +52,23 @@ def add_history(data, processing_message):
     now = datetime.now()
     timestamp = now.strftime("%Y-%m-%dT%H:%M:%SZ")
     message_timestamped = " {} ; {} ".format(timestamp, processing_message)
-    data.attrs["history"] = data.attrs["history"] + message_timestamped
     
+    if "history" in data.attrs.keys():
+        data.attrs["history"] = data.attrs["history"] + message_timestamped
+    else:
+        data.assign_attrs({"history":message_timestamped})
+
 def add_table_id(data, processing_id):
     """_summary_
 
     Args:
-        data (_type_): _description_
-        processing_id (_type_): _description_
+        data (xarray,Dataset or xarray.DataArray): Dataset or array for which the table_id needs to be changed
+        processing_id (str): string for the process 
     """
-
-    data.attrs["table_id"] = "_".join([data.attrs["table_id"], processing_id])
-
+    if "table_id" in data.attrs.keys():
+        data.attrs["table_id"] = "_".join([data.attrs["table_id"], processing_id])
+    else:
+        data.assign_attrs({"table_id": processing_id})
 def add_processing_attributes(data, processing_message, processing_id):
     """Changes history and table_id attributes
 
