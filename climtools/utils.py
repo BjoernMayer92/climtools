@@ -1,6 +1,6 @@
 import xarray as xr
 import logging
-from datetime import Datetime
+from datetime import datetime
 xr.set_options(keep_attrs = True)
 
 
