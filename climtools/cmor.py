@@ -1,6 +1,7 @@
 
 import logging
 import os
+from . import temporal
 
 necessary_cmor_attrs = ["mip_era","activity_id","institution_id", "source_id", "experiment_id","table_id","variable_id","grid_label","variant_label"]
 necessary_cmor_coords = []
@@ -46,9 +47,10 @@ def gen_cmor_path_and_filename(data, version_id):
     table_id = data.table_id
     variable_id = data.variable_id
     grid_label = data.grid_label
+    time_range = get_time_range_string(data)
 
     cmor_path = os.path.join(mip_era, activity_id, institution_id, source_id, experiment_id, variant_label, table_id, variable_id, grid_label, version_id)
-    cmor_file = "_".join([variable_id, table_id, source_id, experiment_id, variant_label, grid_label])+".nc"
+    cmor_file = "_".join([variable_id, table_id, source_id, experiment_id, variant_label, grid_label, time_range])+".nc"
     
     logging.info("Cmor Path: {}".format(cmor_path))
     logging.info("Cmoe File: {}".format(cmor_file))
@@ -87,3 +89,44 @@ def update_process_id(data, process_string):
         updated_string = "_".join([previous_string, process_string])
         data = data.assign_attrs({"process_id":updated_string})
     return data
+
+def get_time_string(time, temporal_resolution):
+    """Returns the string for a timestamp and a given temporal resolution
+
+    Args:
+        time (cftime.datetime): Timestamp
+        temporal_resolution (str): Resolution
+
+    Returns:
+        str: string of timestamp
+    """
+    year = str(time.year)
+    month = str(time.month).zfill(2)
+    day = str(time.day).zfill(2)
+        
+    if temporal_resolution == "year":
+        return year
+    if temporal_resolution == "month":
+        return year+month
+    if temporal_resolution == "day":
+        return year+month+day
+
+def get_time_range_string(data):
+    """Returns a time_range string for a given dataset
+
+    Args:
+        data (xarray.Dataset or xarray.DataArray): Dataset for which the time_range string will be created.
+
+    Returns:
+        str: time_range string 
+    """
+    temporal_resolution = temporal.get_temporal_resolution(data)
+    
+    time_min = data.time.isel(time=0).item()
+    time_max = data.time.isel(time=-1).item()
+    
+    time_min_string = get_time_string(time_min, temporal_resolution)
+    time_max_string = get_time_string(time_max, temporal_resolution)
+    
+    return "-".join([time_min_string, time_max_string])
+    
