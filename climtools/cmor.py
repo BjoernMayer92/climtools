@@ -1,4 +1,5 @@
 
+from ast import If
 import logging
 import os
 from . import temporal
@@ -110,6 +111,8 @@ def get_time_string(time, temporal_resolution):
         return year+month
     if temporal_resolution == "day":
         return year+month+day
+    if temporal_resolution == "multiyear":
+        return year
 
 def get_time_range_string(data):
     """Returns a time_range string for a given dataset

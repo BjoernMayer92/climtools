@@ -75,6 +75,10 @@ def get_temporal_resolution(data):
     if(timedelta == timedelta_1Y).all():
         logging.info("Timedelta year identified")
         return "year"
+
+    if(timedelta > timedelta_1D*365).all():
+        logging.info("Timdelta multiyear identified")
+        return "multiyear"
     else: 
         raise Exception("No valid timedelta could be identified")
         
@@ -217,3 +221,29 @@ def is_leap_year(time):
     else:
         warnings.warn("Calendar not implemented yet")
     return leap
+
+
+def cal_rolling_time_mean(data, time_dim="time", window=10):
+    variables_dict = utils.decompose_dependent_variables(data,[time_dim])
+    dep_variables = variables_dict["dependent"]
+    ind_variables = variables_dict["independent"]
+
+    
+    if "time_bnds" in dep_variables:
+        dep_variables.remove("time_bnds")
+
+        time_bnds_rol = data["time_bnds"].compute().rolling({time_dim:window}, center=True)
+        time_bnds_min = time_bnds_rol.min().isel(bnds=0)
+        time_bnds_max = time_bnds_rol.max().isel(bnds=1)
+        time_bnds = xr.concat([time_bnds_min, time_bnds_max], dim="bnds")
+        data_ind = xr.merge([data[ind_variables], time_bnds.rename("time_bnds")],combine_attrs="override")
+    else: 
+        data_ind = data[ind_variables]
+    
+    data_rolling = data[dep_variables].rolling({time_dim:window}, center=True).mean()
+    
+    processing_id = temporal_resolution_dict[get_temporal_resolution(data)]  +str(window)+"rm"
+    processing_message = "Rolling mean over {} time steps applied".format(str(window))
+    data_return = xr.merge([data_rolling, data_ind],combine_attrs="override")
+    utils.add_processing_attributes(data_return, processing_message, processing_id)
+    return data_return.dropna(dim="time",how="all")
