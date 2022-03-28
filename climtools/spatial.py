@@ -101,6 +101,6 @@ def cal_weighted_mean(data, weights):
     
     result = xr.merge([data[ind_variables], dep_variables_weighted_mean], combine_attrs = "override")
     
-    utils.add_processing_attributes(result, processing_message = "Calculated weighted mean over dimensions {}".format(str(mask_dimensions), processing_id=""))
+    utils.add_processing_attributes(result, processing_message = "Calculated weighted mean over dimensions {}".format(str(mask_dimensions), processing_id="wmean"))
     
     return result
