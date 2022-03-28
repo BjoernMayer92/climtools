@@ -119,10 +119,12 @@ def cal_anomaly_dim(data, dimensions):
     
     dep_variables = variables_dict["dependent"]
     ind_variables = variables_dict["independent"]
-    
+
     if "time_bnds" in dep_variables:
         dep_variables.remove("time_bnds")
         ind_variables.append("time_bnds")
+        print(dep_variables)
+        print(ind_variables)
     
     dep_variables_anom = data[dep_variables] - data[dep_variables].mean(dim=dimensions)
     
