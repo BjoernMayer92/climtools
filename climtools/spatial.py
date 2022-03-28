@@ -77,3 +77,30 @@ def apply_mask(data, mask):
     
     return data 
 
+
+def cal_weighted_mean(data, weights):
+    """_summary_
+
+    Args:
+        data (xarray.Dataset): Dataset for which weighted mean should be calculated
+        weights (xarray.Dataset): Dataset of weights. Dimension of weights determine the average dimensions
+
+    Returns:
+        xarray Dataset: weighted mean over given dimension
+    """
+
+    mask_dimensions = weights.dims
+    
+
+    variables_dict = utils.decompose_dependent_variables(data, dimensions = mask_dimensions)
+    
+    dep_variables = variables_dict["dependent"]
+    ind_variables = variables_dict["independent"]
+    
+    dep_variables_weighted_mean = data[dep_variables].weighted(weights.fillna(0)).mean(mask_dimensions)
+    
+    result = xr.merge([data[ind_variables], dep_variables_weighted_mean], combine_attrs = "override")
+    
+    utils.add_processing_attributes(result, processing_message = "Calculated weighted mean over dimensions {}".format(str(mask_dimensions), processing_id=""))
+    
+    return result
