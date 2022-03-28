@@ -1,6 +1,7 @@
 import xarray as xr
 import numpy as np
 from . import temporal
+from . import utils 
 
 def gen_seasonal_cycle(start, end, frequency):
     """Generates an artifical seasonal cycle for times between a given start and endpoint with a given frequncy
@@ -66,3 +67,38 @@ def gen_test_mono_timeseries(start, end):
     
     
     return xr.merge([data.rename("values"), times_bnds.rename("time_bnds")])
+
+def cal_weighted_mean(data, weights):
+    """_summary_
+
+    Args:
+        data (xarray.Dataset): Dataset for which weighted mean should be calculated
+        weights (xarray.DataArray): Dataset of weights. Dimension of weights determine the average dimensions
+
+    Returns:
+        xarray Dataset: weighted mean over given dimension
+    """
+
+    weights_dimensions = weights.dims
+    
+
+    variables_dict = utils.decompose_dependent_variables(data, dimensions = weights_dimensions)
+    
+    dep_variables = variables_dict["dependent"]
+    ind_variables = variables_dict["independent"]
+    
+    dep_variables_weighted_mean = data[dep_variables].weighted(weights.fillna(0)).mean(mask_dimensions)
+    
+    result = xr.merge([data[ind_variables], dep_variables_weighted_mean], combine_attrs = "override")
+    
+    weights_name = weights.name
+    dimension_name_string = "".join(mask_dimensions)
+    
+    processing_message = "Calculated {} weighted mean over dimensions {}".format(weights_name, dimension_name_string)
+    processing_id = "_".join([weights_name, "weightedmean", dimension_name_string])
+
+    utils.add_processing_attributes(result, 
+                                    processing_message = processing_message,
+                                    processing_id = processing_id)
+    
+    return result
