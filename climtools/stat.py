@@ -87,12 +87,12 @@ def cal_weighted_mean(data, weights):
     dep_variables = variables_dict["dependent"]
     ind_variables = variables_dict["independent"]
     
-    dep_variables_weighted_mean = data[dep_variables].weighted(weights.fillna(0)).mean(mask_dimensions)
+    dep_variables_weighted_mean = data[dep_variables].weighted(weights.fillna(0)).mean(weights_dimensions)
     
     result = xr.merge([data[ind_variables], dep_variables_weighted_mean], combine_attrs = "override")
     
     weights_name = weights.name
-    dimension_name_string = "-".join(mask_dimensions)
+    dimension_name_string = "-".join(weights_dimensions)
     
     processing_message = "Calculated {} weighted mean over dimensions {}".format(weights_name, dimension_name_string)
     processing_id = "_".join([weights_name, "weightedmean", dimension_name_string])
