@@ -92,7 +92,7 @@ def cal_weighted_mean(data, weights):
     result = xr.merge([data[ind_variables], dep_variables_weighted_mean], combine_attrs = "override")
     
     weights_name = weights.name
-    dimension_name_string = "".join(mask_dimensions)
+    dimension_name_string = "-".join(mask_dimensions)
     
     processing_message = "Calculated {} weighted mean over dimensions {}".format(weights_name, dimension_name_string)
     processing_id = "_".join([weights_name, "weightedmean", dimension_name_string])
@@ -101,4 +101,35 @@ def cal_weighted_mean(data, weights):
                                     processing_message = processing_message,
                                     processing_id = processing_id)
     
+    return result
+
+
+def cal_anomaly_dim(data, dimensions):
+    """Calculates the anomaly over given dimension(s)
+
+    Args:
+        data (xarray.Dataset): Dataset for which anomaly is calculated
+        dimensions (list[str]): Dimension string or list of dimenstion strings
+
+    Returns:
+        xarray.Dataset: Anomaly Dataset
+    """
+    
+    variables_dict = utils.decompose_dependent_variables(data, dimensions = dimensions)
+    
+    dep_variables = variables_dict["dependent"]
+    ind_variables = variables_dict["independent"]
+    
+    dep_variables_anom = data[dep_variables] - data[dep_variables].mean(dim=dimensions)
+    
+    result = xr.merge([data[ind_variables], dep_variables_anom],combine_attrs = "override")
+    
+    dimension_name_string = "-".join(dimensions)
+    
+    processing_message = "Calculated {} anomaly".format(dimension_name_string)
+    processing_id = "_".join([dimension_name_string,"anomaly"])
+    
+    utils.add_processing_attributes(result, 
+                                    processing_message = processing_message,
+                                    processing_id = processing_id)
     return result
