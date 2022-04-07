@@ -103,6 +103,41 @@ def cal_weighted_mean(data, weights):
     
     return result
 
+def cal_weighted_anom(data, weights):    
+    """ Calculates the weighted anomaly for a given dataset
+
+    Args:
+        data (xarray.Dataset): Dataset for which weighted mean should be calculated
+        weights (xarray.DataArray): Dataset of weights. Dimension of weights determine the average dimensions
+
+    Returns:
+        xarray Dataset: weighted anom over given dimension
+    """
+    weights_name = weights.name
+    weights_dimensions = weights.dims
+    weighs_dimensions = utils.decompose_dependent_variables(data, dimensions = weights_dimensions)
+    
+    variables_dict = utils.decompose_dependent_variables(data, dimensions = weights_dimensions)
+    dep_variables = variables_dict["dependent"]
+    ind_variables = variables_dict["independent"]
+    
+    dep_variables_mean = cal_weighted_mean(data[dep_variables], weights)
+    
+    dep_variables_anom = data[dep_variables] - dep_variables_mean
+    
+    result = xr.merge([ data[ind_variables],dep_variables_anom], combine_attrs= "override")
+    
+    dimension_name_string = "-".join(weights_dimensions)
+    processing_message = "Calculated {} weighted anomly over dimensions {}".format(weights_name, dimension_name_string)
+    
+    processing_id = "_".join([weights_name, "weightedanom", dimension_name_string])
+    
+    utils.add_processing_attributes(result, 
+                                    processing_message = processing_message,
+                                    processing_id = processing_id)
+    
+    return result
+
 
 def cal_anomaly_dim(data, dimensions):
     """Calculates the anomaly over given dimension(s)
