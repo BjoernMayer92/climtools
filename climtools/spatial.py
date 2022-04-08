@@ -1,7 +1,7 @@
 import xarray as xr
 xr.set_options(keep_attrs = True)
 from . import utils
-
+import logging
 
 def sellonlatbox(data, longitude_min, longitude_max, latitude_min, latitude_max, latitude_dim = "lat", longitude_dim = "lon"):
     """Selects points of a given dataset that are in between the boundaries defined by latitude and longitudes mininmums and maximums
@@ -67,6 +67,11 @@ def apply_mask(data, mask):
     Returns:
         xarray.Dataset: Masked data 
     """
+    has_nans = xr.ufuncs.isnan(mask).any()
+    if has_nans:
+        logging.info("NaNs in mask detected and filled with zeros")
+        mask = mask.fillna(0)
+
     variable_dict = utils.decompose_dependent_variables(data,mask.dims)
     
     dep_variables = variable_dict["dependent"]
