@@ -233,8 +233,10 @@ def cal_rolling_time_mean(data, time_dim="time", window=10):
         dep_variables.remove("time_bnds")
 
         time_bnds_rol = data["time_bnds"].compute().rolling({time_dim:window}, center=True)
-        time_bnds_min = time_bnds_rol.min().isel(bnds=0)
-        time_bnds_max = time_bnds_rol.max().isel(bnds=1)
+        time_bnds_rol = data["time_bnds"].compute().rolling({time_dim:window}, center=True).construct(window_dim="window_step")
+        time_bnds_min = time_bnds_rol.isel(bnds=0, window_step=0)
+        time_bnds_max = time_bnds_rol.isel(bnds=1, window_step=-1)
+
         time_bnds = xr.concat([time_bnds_min, time_bnds_max], dim="bnds")
         data_ind = xr.merge([data[ind_variables], time_bnds.rename("time_bnds")],combine_attrs="override")
     else: 
@@ -246,4 +248,6 @@ def cal_rolling_time_mean(data, time_dim="time", window=10):
     processing_message = "Rolling mean over {} time steps applied".format(str(window))
     data_return = xr.merge([data_rolling, data_ind],combine_attrs="override")
     utils.add_processing_attributes(data_return, processing_message, processing_id)
+
+    data_return = data_return.dropna(subset = dep_variables,dim = time_dim, how="all")
     return data_return.dropna(dim="time",how="all")
