@@ -249,5 +249,4 @@ def cal_rolling_time_mean(data, time_dim="time", window=10):
     data_return = xr.merge([data_rolling, data_ind],combine_attrs="override")
     utils.add_processing_attributes(data_return, processing_message, processing_id)
 
-    data_return = data_return.dropna(subset = dep_variables,dim = time_dim, how="all")
-    return data_return.dropna(dim="time",how="all")
+    return data_return.dropna(subset = dep_variables,dim = time_dim, how="all")
