@@ -23,7 +23,7 @@ def cal_timedelta_year(time):
     """Calculates the duration for each year in each timestamp
 
     Args:
-        time (xarray.DataArray): DataArray containing cftime.Datetime Objects
+        time (xarray.DataArray): DataArray containing cftime.datetime Objects
 
     Returns:
         [:obj: `np.array` of :obj: `timedelta64`]: [description]
@@ -38,7 +38,7 @@ def cal_timedelta_month(time):
     """Calculates the duration for each month in each timestamp
 
     Args:
-        time (xarray.DataArray): DataArray containing cftime.Datetime Objects
+        time (xarray.DataArray): DataArray containing cftime.datetime Objects
 
     Returns:
         [:obj: `np.array` of :obj: `timedelta64`]: [description]
@@ -154,7 +154,7 @@ def temporal_downsampling(data, target_resolution):
         target_resolution (string): Target Resolution.
 
     Returns:
-        [xarray.Dataset]: Dataset with a new temporal resolution
+        xarray.Dataset: Dataset with a new temporal resolution
     """
 
     variables = [variable_name for variable_name in data.data_vars]
@@ -202,7 +202,7 @@ def is_leap_year(time):
     """Checks whether a given cf.Datetime is actually a leap year. Function based on https://github.com/Unidata/cftime/blob/master/src/cftime/_cftime.pyx 
 
     Args:
-        time (cftime.Datetime): Datetime to check
+        time (cftime.datetime): Datetime to check
     """
 
     year = time.year
@@ -224,6 +224,16 @@ def is_leap_year(time):
 
 
 def cal_rolling_time_mean(data, time_dim="time", window=10):
+    """Calculates the rolling time mean for a given dataset
+
+    Args:
+        data (xarray.Dataset): Dataset for which to calculate the rolling mean
+        time_dim (str, optional): Dimension over which rolling average is calculated. Defaults to time.
+        window (int, optional): Length of the rolling window. Defaults to 10.
+
+    Returns:
+        xarray.Dataset: Rolling averaged data. Nan values are dropped.
+    """
     variables_dict = utils.decompose_dependent_variables(data,[time_dim])
     dep_variables = variables_dict["dependent"]
     ind_variables = variables_dict["independent"]

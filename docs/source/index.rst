@@ -8,9 +8,18 @@ Welcome to climtools's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   modules
+TeacherAPI main
+===================
+.. automodule:: app
+   :members:
+   
+climtools stat
+===================
+.. automodule:: climtools.stat
+   :members:
 
 Indices and tables
+
 ==================
 
 * :ref:`genindex`

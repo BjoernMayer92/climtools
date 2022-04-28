@@ -8,9 +8,13 @@ Welcome to climtools's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   modules
+climtools stat
+===================
+.. automodule:: climtools.stat
+   :members:
 
 Indices and tables
+
 ==================
 
 * :ref:`genindex`

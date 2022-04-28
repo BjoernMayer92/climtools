@@ -28,10 +28,13 @@ def check_neccessary_cmor(data):
     assert len(non_existent_coords)== 0, "Coordinates {} missing in data".format(non_existent_coords)
     
 def gen_cmor_path_and_filename(data, version_id):
-    """Generates from the attributes a cmor path and a cmor filename
+    """ Generates a cmor compliant path and filename for a given dataset. Data must have the neccessary attributes
 
     Args:
-        data (xarray.DataArray or xarray.Dataset): xarray object for which the path and filename should be generated
+        data (xarray.Dataset or xarray.DataArray):  Dataset for which the path and filename should be generated
+        version_id (str): String indicating the version id used for this dataset
+
+    Returns: A tuple (path, file) where path is the relative path and file the cmor filename.
     """
     check_neccessary_cmor(data)
     

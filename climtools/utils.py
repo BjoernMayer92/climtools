@@ -47,7 +47,7 @@ def add_history(data, processing_message):
 
     Args:
         data (xarray.Dataset or xarray.DataArray): dataset or dataarray for which history is to be changed
-        processing_message (str): Message string
+        processing_message (str): Message describing the processing step
     """
     now = datetime.datetime.now()
     timestamp = now.strftime("%Y-%m-%dT%H:%M:%SZ")
@@ -63,7 +63,7 @@ def add_table_id(data, processing_id):
 
     Args:
         data (xarray,Dataset or xarray.DataArray): Dataset or array for which the table_id needs to be changed
-        processing_id (str): string for the process 
+        processing_id (str): ID indicative of the processing step 
     """
     if "table_id" in data.attrs.keys():
         data.attrs["table_id"] = "_".join([data.attrs["table_id"], processing_id])
@@ -74,8 +74,8 @@ def add_processing_attributes(data, processing_message, processing_id):
 
     Args:
         data (xarray.Dataset or xarray.DataArray): 
-        processing_message (_type_): _description_
-        processing_id (_type_): _description_
+        processing_message (string): Message describing the processing step
+        processing_id (string): ID indicative of the processing step
     """
 
     add_table_id(data, processing_id)
