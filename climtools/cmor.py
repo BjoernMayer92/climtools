@@ -4,7 +4,7 @@ import logging
 import os
 from . import temporal
 
-necessary_cmor_attrs = ["mip_era","activity_id","institution_id", "source_id", "experiment_id","table_id","variable_id","grid_label","variant_label"]
+necessary_cmor_attrs = ["mip_era","activity_id","institution_id", "model_id", "experiment_id","table_id","variable_id","grid_label","variant_label"]
 necessary_cmor_coords = []
 
 
@@ -41,7 +41,7 @@ def gen_cmor_path_and_filename(data, version_id):
     mip_era = data.mip_era
     activity_id = data.activity_id
     institution_id = data.institution_id
-    source_id = data.source_id
+    model_id = data.model_id
     experiment_id = data.experiment_id
     variant_label = data.variant_label
     if "process_id" in data.attrs:
@@ -53,12 +53,58 @@ def gen_cmor_path_and_filename(data, version_id):
     grid_label = data.grid_label
     time_range = get_time_range_string(data)
 
-    cmor_path = os.path.join(mip_era, activity_id, institution_id, source_id, experiment_id, variant_label, table_id, variable_id, grid_label, version_id)
-    cmor_file = "_".join([variable_id, table_id, source_id, experiment_id, variant_label, grid_label, time_range])+".nc"
+    cmor_path = gen_cmor_path(mip_era, activity_id, institution_id, model_id, experiment_id, variant_label, table_id, variable_id, grid_label, version_id)
+    cmor_file = gen_cmor_filename(variable_id, table_id, model_id, experiment_id, variant_label, grid_label, time_range)
     
     logging.info("Cmor Path: {}".format(cmor_path))
     logging.info("Cmoe File: {}".format(cmor_file))
     return cmor_path, cmor_file
+
+def gen_cmor_filename(variable_id, table_id, model_id, experiment_id, realization_id, grid_label, time_range_string):
+    """_summary_
+
+    Args:
+        variable_id (str): cmor variable id
+        table_id (str): cmor_table id
+        model_id (str): cmor model id
+        experiment_id (str): cmor experiment id
+        realization_id (str): cmor realization id
+        grid_label (str): cmor grid label
+        time_range_string (str): cmor time range string
+
+    Returns:
+        str: cmor filename 
+    """
+    filename = "_".join([variable_id, table_id, model_id,  experiment_id, realization_id, grid_label, time_range_string])+".nc"
+    return filename
+
+def gen_cmor_path(mip_era, activity_id, institution_id, model_id, experiment_id, realization_id, table_id, variable_id, grid_label, version_id):
+    """_summary_
+
+    Args:
+        mip_era (str): cmor mip era id
+        activity_id (str): _description_
+        institution_id (str)): _description_
+        model_id (str): _description_
+        experiment_id (str): _description_
+        realization_id (str): _description_
+        table_id (str): _description_
+        variable_id (str): _description_
+        grid_label (str): _description_
+        version_id (str): _description_
+
+    Returns:
+        _type_: _description_
+    """
+    return os.path.join(mip_era, activity_id, institution_id, model_id, experiment_id, realization_id, table_id, variable_id, grid_label, version_id)
+
+def gen_cmor_full_filename(mip_era, activity_id, institution_id, model_id, experiment_id, realization_id, table_id, variable_id, grid_label, version_id, time_range_string, data_init_path):
+    
+    relative_CMIP_path = gen_cmor_path(mip_era, activity_id, institution_id, model_id, experiment_id, realization_id, table_id, variable_id, grid_label, version_id)
+    filename = gen_cmor_filename(variable_id, table_id, model_id, experiment_id, realization_id, grid_label, time_range_string)
+
+    full_filename = os.path.join(data_init_path, relative_CMIP_path, filename)
+    return full_filename
 
 
 def cmor_save(data, parent_directory):

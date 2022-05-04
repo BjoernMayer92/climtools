@@ -69,6 +69,7 @@ def add_table_id(data, processing_id):
         data.attrs["table_id"] = "_".join([data.attrs["table_id"], processing_id])
     else:
         data.assign_attrs({"table_id": processing_id})
+
 def add_processing_attributes(data, processing_message, processing_id):
     """Changes history and table_id attributes
 
@@ -80,3 +81,32 @@ def add_processing_attributes(data, processing_message, processing_id):
 
     add_table_id(data, processing_id)
     add_history(data, processing_message)
+
+
+def pre_attrs_to_dims(ds,attribute_keys):
+    """Adds attributes of a given Dataset as dimensions
+
+    Args:
+        ds (xarray.Dataset/xarray.DataArray): 
+        attribute_keys (list of str):  
+
+    Returns:
+        xarray.Dataset or xarray.DataArray: _description_
+    """
+    for key in attribute_keys:
+        ds = ds.assign_coords({key:ds.attrs[key]})
+        ds = ds.expand_dims(key)
+
+    return ds
+
+
+def func_attrs_to_dims(attribute_keys):
+    """_summary_
+
+    Args:
+        attribute_keys (_type_): _description_
+
+    Returns:
+        _type_: _description_
+    """
+    return lambda ds: pre_attrs_to_dims(ds, attribute_keys)
