@@ -15,6 +15,8 @@
     <script src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="climtools.tests package" href="climtools.tests.html" />
+    <link rel="prev" title="climtools" href="modules.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -33,14 +35,428 @@
             
   <section id="climtools-package">
 <h1>climtools package<a class="headerlink" href="#climtools-package" title="Permalink to this headline">¶</a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="climtools.tests.html">climtools.tests package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="climtools.tests.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="climtools.tests.html#module-climtools.tests.helper_functions">climtools.tests.helper_functions module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="climtools.tests.html#climtools-tests-test-spatial-module">climtools.tests.test_spatial module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="climtools.tests.html#module-climtools.tests.test_spatial_datagenerator">climtools.tests.test_spatial_datagenerator module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="climtools.tests.html#climtools-tests-test-stat-module">climtools.tests.test_stat module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="climtools.tests.html#climtools-tests-test-temporal-module">climtools.tests.test_temporal module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="climtools.tests.html#module-climtools.tests">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="module-climtools.cmor">
+<span id="climtools-cmor-module"></span><h2>climtools.cmor module<a class="headerlink" href="#module-climtools.cmor" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="climtools.cmor.check_neccessary_cmor">
+<span class="sig-prename descclassname"><span class="pre">climtools.cmor.</span></span><span class="sig-name descname"><span class="pre">check_neccessary_cmor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#climtools.cmor.check_neccessary_cmor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if all the neccessary attributes and coordinates exists for saving in cmor format</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> (<a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2022.3.1.dev0)"><em>xarray.DataArray</em></a><em> or </em><a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2022.3.1.dev0)"><em>xarray.Dataset</em></a>) – Dataset investigated</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="climtools.cmor.cmor_save">
+<span class="sig-prename descclassname"><span class="pre">climtools.cmor.</span></span><span class="sig-name descname"><span class="pre">cmor_save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent_directory</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#climtools.cmor.cmor_save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save a dataarray or dataset in conform with cmor regulations under the parent directory</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2022.3.1.dev0)"><em>xarray.DataArray</em></a><em> or </em><a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2022.3.1.dev0)"><em>xarray.Dataset</em></a>) – Data to be saved</p></li>
+<li><p><strong>parent_directory</strong> (<em>string</em>) – Path to the parent folder where the CMIP-folder structure starts</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="climtools.cmor.gen_cmor_filename">
+<span class="sig-prename descclassname"><span class="pre">climtools.cmor.</span></span><span class="sig-name descname"><span class="pre">gen_cmor_filename</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">variable_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">table_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">experiment_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">realization_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_range_string</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#climtools.cmor.gen_cmor_filename" title="Permalink to this definition">¶</a></dt>
+<dd><p>_summary_</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>variable_id</strong> (<em>str</em>) – cmor variable id</p></li>
+<li><p><strong>table_id</strong> (<em>str</em>) – cmor_table id</p></li>
+<li><p><strong>model_id</strong> (<em>str</em>) – cmor model id</p></li>
+<li><p><strong>experiment_id</strong> (<em>str</em>) – cmor experiment id</p></li>
+<li><p><strong>realization_id</strong> (<em>str</em>) – cmor realization id</p></li>
+<li><p><strong>grid_label</strong> (<em>str</em>) – cmor grid label</p></li>
+<li><p><strong>time_range_string</strong> (<em>str</em>) – cmor time range string</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>cmor filename</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="climtools.cmor.gen_cmor_full_filename">
+<span class="sig-prename descclassname"><span class="pre">climtools.cmor.</span></span><span class="sig-name descname"><span class="pre">gen_cmor_full_filename</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mip_era</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activity_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">institution_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">experiment_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">realization_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">table_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variable_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_range_string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_init_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#climtools.cmor.gen_cmor_full_filename" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="climtools.cmor.gen_cmor_path">
+<span class="sig-prename descclassname"><span class="pre">climtools.cmor.</span></span><span class="sig-name descname"><span class="pre">gen_cmor_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mip_era</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activity_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">institution_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">experiment_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">realization_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">table_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variable_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#climtools.cmor.gen_cmor_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>_summary_</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mip_era</strong> (<em>str</em>) – cmor mip era id</p></li>
+<li><p><strong>activity_id</strong> (<em>str</em>) – _description_</p></li>
+<li><p><strong>institution_id</strong> (<em>str</em><em>)</em>) – _description_</p></li>
+<li><p><strong>model_id</strong> (<em>str</em>) – _description_</p></li>
+<li><p><strong>experiment_id</strong> (<em>str</em>) – _description_</p></li>
+<li><p><strong>realization_id</strong> (<em>str</em>) – _description_</p></li>
+<li><p><strong>table_id</strong> (<em>str</em>) – _description_</p></li>
+<li><p><strong>variable_id</strong> (<em>str</em>) – _description_</p></li>
+<li><p><strong>grid_label</strong> (<em>str</em>) – _description_</p></li>
+<li><p><strong>version_id</strong> (<em>str</em>) – _description_</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>_description_</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>_type_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="climtools.cmor.gen_cmor_path_and_filename">
+<span class="sig-prename descclassname"><span class="pre">climtools.cmor.</span></span><span class="sig-name descname"><span class="pre">gen_cmor_path_and_filename</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#climtools.cmor.gen_cmor_path_and_filename" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates a cmor compliant path and filename for a given dataset. Data must have the neccessary attributes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2022.3.1.dev0)"><em>xarray.Dataset</em></a><em> or </em><a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2022.3.1.dev0)"><em>xarray.DataArray</em></a>) – Dataset for which the path and filename should be generated</p></li>
+<li><p><strong>version_id</strong> (<em>str</em>) – String indicating the version id used for this dataset</p></li>
+</ul>
+</dd>
+</dl>
+<p>Returns: A tuple (path, file) where path is the relative path and file the cmor filename.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="climtools.cmor.get_time_range_string">
+<span class="sig-prename descclassname"><span class="pre">climtools.cmor.</span></span><span class="sig-name descname"><span class="pre">get_time_range_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#climtools.cmor.get_time_range_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a time_range string for a given dataset</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> (<a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2022.3.1.dev0)"><em>xarray.Dataset</em></a><em> or </em><a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2022.3.1.dev0)"><em>xarray.DataArray</em></a>) – Dataset for which the time_range string will be created.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>time_range string</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="climtools.cmor.get_time_string">
+<span class="sig-prename descclassname"><span class="pre">climtools.cmor.</span></span><span class="sig-name descname"><span class="pre">get_time_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temporal_resolution</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#climtools.cmor.get_time_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the string for a timestamp and a given temporal resolution</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>time</strong> (<a class="reference external" href="https://unidata.github.io/cftime/api.html#cftime.datetime" title="(in cftime)"><em>cftime.datetime</em></a>) – Timestamp</p></li>
+<li><p><strong>temporal_resolution</strong> (<em>str</em>) – Resolution</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>string of timestamp</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="climtools.cmor.update_process_id">
+<span class="sig-prename descclassname"><span class="pre">climtools.cmor.</span></span><span class="sig-name descname"><span class="pre">update_process_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">process_string</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#climtools.cmor.update_process_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates or assings a new attribute “process_id” to the dataset in order to track changes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2022.3.1.dev0)"><em>xarray.DataArray</em></a><em> or </em><a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2022.3.1.dev0)"><em>xarray.Dataset</em></a>) – Data where the attribute should be updated</p></li>
+<li><p><strong>process_string</strong> (<em>string</em>) – String that indicates the update that has been done on the data</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>[description]</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>[type]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-climtools.multiindex">
+<span id="climtools-multiindex-module"></span><h2>climtools.multiindex module<a class="headerlink" href="#module-climtools.multiindex" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="climtools.multiindex.load_coordinates">
+<span class="sig-prename descclassname"><span class="pre">climtools.multiindex.</span></span><span class="sig-name descname"><span class="pre">load_coordinates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#climtools.multiindex.load_coordinates" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="climtools.multiindex.xarray_load_multiindex">
+<span class="sig-prename descclassname"><span class="pre">climtools.multiindex.</span></span><span class="sig-name descname"><span class="pre">xarray_load_multiindex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#climtools.multiindex.xarray_load_multiindex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="climtools.multiindex.xarray_save_multiindex">
+<span class="sig-prename descclassname"><span class="pre">climtools.multiindex.</span></span><span class="sig-name descname"><span class="pre">xarray_save_multiindex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">folder</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#climtools.multiindex.xarray_save_multiindex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-climtools.physical">
+<span id="climtools-physical-module"></span><h2>climtools.physical module<a class="headerlink" href="#module-climtools.physical" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="module-climtools.processing">
+<span id="climtools-processing-module"></span><h2>climtools.processing module<a class="headerlink" href="#module-climtools.processing" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="climtools.processing.load_execute_save">
+<span class="sig-prename descclassname"><span class="pre">climtools.processing.</span></span><span class="sig-name descname"><span class="pre">load_execute_save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_init_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">func_args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">func_kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#climtools.processing.load_execute_save" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-climtools.spatial">
+<span id="climtools-spatial-module"></span><h2>climtools.spatial module<a class="headerlink" href="#module-climtools.spatial" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="climtools.spatial.apply_mask">
+<span class="sig-prename descclassname"><span class="pre">climtools.spatial.</span></span><span class="sig-name descname"><span class="pre">apply_mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#climtools.spatial.apply_mask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies a mask to a datast for all variables that have the same dimensions as the mask</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2022.3.1.dev0)"><em>xarray.Dataset</em></a>) – Dataset which should be masked</p></li>
+<li><p><strong>mask</strong> (<a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2022.3.1.dev0)"><em>xarray.DataArray</em></a>) – Mask</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Masked data</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2022.3.1.dev0)">xarray.Dataset</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="climtools.spatial.gen_lonlatbox_mask">
+<span class="sig-prename descclassname"><span class="pre">climtools.spatial.</span></span><span class="sig-name descname"><span class="pre">gen_lonlatbox_mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">longitude_min</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">longitude_max</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latitude_min</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latitude_max</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latitude_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'lat'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">longitude_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'lon'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#climtools.spatial.gen_lonlatbox_mask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates a mask for a longitude and latitude box for a given dataset. Longitude has to be in [0,360]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2022.3.1.dev0)"><em>xarray.Dataset</em></a>) – Dataset for which mask is generated</p></li>
+<li><p><strong>longitude_min</strong> (<em>_type_</em>) – Minimum longitude (Minimum not included)</p></li>
+<li><p><strong>longitude_max</strong> (<em>_type_</em>) – Maximum longitude (Maximum not included)</p></li>
+<li><p><strong>latitude_min</strong> (<em>_type_</em>) – Minimum latitude (Minimum not included)</p></li>
+<li><p><strong>latitude_max</strong> (<em>_type_</em>) – Maximum latitude (Maximum not included)</p></li>
+<li><p><strong>latitude_dim</strong> (<em>str</em><em>, </em><em>optional</em>) – _description_. Defaults to “lat”.</p></li>
+<li><p><strong>longitude_dim</strong> (<em>str</em><em>, </em><em>optional</em>) – _description_. Defaults to “lon”.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Mask</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2022.3.1.dev0)">xarray.DataArray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="climtools.spatial.sellonlatbox">
+<span class="sig-prename descclassname"><span class="pre">climtools.spatial.</span></span><span class="sig-name descname"><span class="pre">sellonlatbox</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">longitude_min</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">longitude_max</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latitude_min</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latitude_max</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latitude_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'lat'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">longitude_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'lon'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#climtools.spatial.sellonlatbox" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects points of a given dataset that are in between the boundaries defined by latitude and longitudes mininmums and maximums</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2022.3.1.dev0)"><em>xarray.Dataset</em></a>) – Input dataset.</p></li>
+<li><p><strong>longitude_min</strong> (<em>float</em>) – Minimum longitude</p></li>
+<li><p><strong>longitude_max</strong> (<em>float</em>) – Maximum longitude</p></li>
+<li><p><strong>latitude_min</strong> (<em>float</em>) – Minimum latitude</p></li>
+<li><p><strong>latitude_max</strong> (<em>float</em>) – Maximum latitude</p></li>
+<li><p><strong>latitude_dim</strong> (<em>str</em><em>, </em><em>optional</em>) – Name of the latitude dimension. Defaults to “lat”.</p></li>
+<li><p><strong>longitude_dim</strong> (<em>str</em><em>, </em><em>optional</em>) – Name of the longitude dimension. Defaults to “lon”.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Dataset with masked values</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>xarray Dataset</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-climtools.spatial_datagenerator">
+<span id="climtools-spatial-datagenerator-module"></span><h2>climtools.spatial_datagenerator module<a class="headerlink" href="#module-climtools.spatial_datagenerator" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="climtools.spatial_datagenerator.distance_on_earth">
+<span class="sig-prename descclassname"><span class="pre">climtools.spatial_datagenerator.</span></span><span class="sig-name descname"><span class="pre">distance_on_earth</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lon_rad_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lat_rad_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lon_rad_2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lat_rad_2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#climtools.spatial_datagenerator.distance_on_earth" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="climtools.spatial_datagenerator.xarray_autocovariance_matrix">
+<span class="sig-prename descclassname"><span class="pre">climtools.spatial_datagenerator.</span></span><span class="sig-name descname"><span class="pre">xarray_autocovariance_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'sample'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#climtools.spatial_datagenerator.xarray_autocovariance_matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>”
+:param data: [description]
+:type data: [type]
+:param sample_dim: [description]. Defaults to “time”.
+:type sample_dim: str, optional</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – [description]</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>[description]</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>[type]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="climtools.spatial_datagenerator.xarray_multivariate_normal_distribution">
+<span class="sig-prename descclassname"><span class="pre">climtools.spatial_datagenerator.</span></span><span class="sig-name descname"><span class="pre">xarray_multivariate_normal_distribution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mean</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">covariance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'location'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'sample'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#climtools.spatial_datagenerator.xarray_multivariate_normal_distribution" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mean</strong> (<em>[</em><em>type</em><em>]</em>) – [description]</p></li>
+<li><p><strong>covariance</strong> (<em>[</em><em>type</em><em>]</em>) – [description]</p></li>
+<li><p><strong>n_sample</strong> (<em>[</em><em>type</em><em>]</em>) – [description]</p></li>
+<li><p><strong>feature_dim</strong> (<em>str</em><em>, </em><em>optional</em>) – [description]. Defaults to “location”.</p></li>
+<li><p><strong>sample_dim</strong> (<em>str</em><em>, </em><em>optional</em>) – [description]. Defaults to “sample”.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>[description]</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>[type]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="climtools.spatial_datagenerator.xarray_spatial_correlated_distance_regular_grid">
+<span class="sig-prename descclassname"><span class="pre">climtools.spatial_datagenerator.</span></span><span class="sig-name descname"><span class="pre">xarray_spatial_correlated_distance_regular_grid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_sample</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lonlat_resolution</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance_decay_constant</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">40000</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#climtools.spatial_datagenerator.xarray_spatial_correlated_distance_regular_grid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </section>
 <section id="module-climtools.stat">
 <span id="climtools-stat-module"></span><h2>climtools.stat module<a class="headerlink" href="#module-climtools.stat" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">
+<dt class="sig sig-object py" id="climtools.stat.cal_anomaly_dim">
+<span class="sig-prename descclassname"><span class="pre">climtools.stat.</span></span><span class="sig-name descname"><span class="pre">cal_anomaly_dim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dimensions</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#climtools.stat.cal_anomaly_dim" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the anomaly over given dimension(s)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2022.3.1.dev0)"><em>xarray.Dataset</em></a>) – Dataset for which anomaly is calculated</p></li>
+<li><p><strong>dimensions</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – Dimension string or list of dimenstion strings</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Anomaly Dataset</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2022.3.1.dev0)">xarray.Dataset</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="climtools.stat.cal_weighted_anom">
+<span class="sig-prename descclassname"><span class="pre">climtools.stat.</span></span><span class="sig-name descname"><span class="pre">cal_weighted_anom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weights</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#climtools.stat.cal_weighted_anom" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the weighted anomaly for a given dataset</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2022.3.1.dev0)"><em>xarray.Dataset</em></a>) – Dataset for which weighted mean should be calculated</p></li>
+<li><p><strong>weights</strong> (<a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2022.3.1.dev0)"><em>xarray.DataArray</em></a>) – Dataset of weights. Dimension of weights determine the average dimensions</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>weighted anom over given dimension</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>xarray Dataset</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="climtools.stat.cal_weighted_mean">
+<span class="sig-prename descclassname"><span class="pre">climtools.stat.</span></span><span class="sig-name descname"><span class="pre">cal_weighted_mean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weights</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#climtools.stat.cal_weighted_mean" title="Permalink to this definition">¶</a></dt>
+<dd><p>_summary_</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2022.3.1.dev0)"><em>xarray.Dataset</em></a>) – Dataset for which weighted mean should be calculated</p></li>
+<li><p><strong>weights</strong> (<a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2022.3.1.dev0)"><em>xarray.DataArray</em></a>) – Dataset of weights. Dimension of weights determine the average dimensions</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>weighted mean over given dimension</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2022.3.1.dev0)">xarray.Dataset</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="climtools.stat.gen_seasonal_cycle">
 <span class="sig-prename descclassname"><span class="pre">climtools.stat.</span></span><span class="sig-name descname"><span class="pre">gen_seasonal_cycle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frequency</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#climtools.stat.gen_seasonal_cycle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates an artifical seasonal cycle for times between a given start and endpoint with a given frequncy</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start</strong> (<a class="reference external" href="https://unidata.github.io/cftime/api.html#cftime.datetime" title="(in cftime)"><em>cftime.datetime</em></a>) – Beginning of the period</p></li>
+<li><p><strong>end</strong> (<a class="reference external" href="https://unidata.github.io/cftime/api.html#cftime.datetime" title="(in cftime)"><em>cftime.datetime</em></a>) – End of the period</p></li>
+<li><p><strong>frequency</strong> (<em>string</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Dataset containing seasonal cycles</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2022.3.1.dev0)">xarray.Dataset</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="climtools.stat.gen_test_mono_timeseries">
+<span class="sig-prename descclassname"><span class="pre">climtools.stat.</span></span><span class="sig-name descname"><span class="pre">gen_test_mono_timeseries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#climtools.stat.gen_test_mono_timeseries" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generates an artifical seasonal cycle for times between a given start and endpoint with a given frequncy</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -54,7 +470,28 @@
 <dd class="field-even"><p>Dataset containing seasonal cycle</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>xarray.Dataset</p>
+<dd class="field-odd"><p><a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2022.3.1.dev0)">xarray.Dataset</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="climtools.stat.generate_timeseries">
+<span class="sig-prename descclassname"><span class="pre">climtools.stat.</span></span><span class="sig-name descname"><span class="pre">generate_timeseries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frequency</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#climtools.stat.generate_timeseries" title="Permalink to this definition">¶</a></dt>
+<dd><p>[summary]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start</strong> (<em>[</em><em>type</em><em>]</em>) – [description]</p></li>
+<li><p><strong>end</strong> (<em>[</em><em>type</em><em>]</em>) – [description]</p></li>
+<li><p><strong>frequency</strong> (<em>[</em><em>type</em><em>]</em>) – [description]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>[description]</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>[type]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -83,18 +520,60 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="climtools.temporal.cal_timedelta_month">
-<span class="sig-prename descclassname"><span class="pre">climtools.temporal.</span></span><span class="sig-name descname"><span class="pre">cal_timedelta_month</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#climtools.temporal.cal_timedelta_month" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="climtools.temporal.cal_monthly_weights">
+<span class="sig-prename descclassname"><span class="pre">climtools.temporal.</span></span><span class="sig-name descname"><span class="pre">cal_monthly_weights</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_resolution</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_dimension</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'time'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#climtools.temporal.cal_monthly_weights" title="Permalink to this definition">¶</a></dt>
 <dd><p>[summary]</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>time</strong> (<em>[</em><em>type</em><em>]</em>) – [description]</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>[</em><em>type</em><em>]</em>) – [description]</p></li>
+<li><p><strong>time_dim</strong> (<em>str</em><em>, </em><em>optional</em>) – [description]. Defaults to “time”.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>[description]</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>[type]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="climtools.temporal.cal_rolling_time_mean">
+<span class="sig-prename descclassname"><span class="pre">climtools.temporal.</span></span><span class="sig-name descname"><span class="pre">cal_rolling_time_mean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'time'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#climtools.temporal.cal_rolling_time_mean" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the rolling time mean for a given dataset</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2022.3.1.dev0)"><em>xarray.Dataset</em></a>) – Dataset for which to calculate the rolling mean</p></li>
+<li><p><strong>time_dim</strong> (<em>str</em><em>, </em><em>optional</em>) – Dimension over which rolling average is calculated. Defaults to time.</p></li>
+<li><p><strong>window</strong> (<em>int</em><em>, </em><em>optional</em>) – Length of the rolling window. Defaults to 10.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Rolling averaged data. Nan values are dropped.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2022.3.1.dev0)">xarray.Dataset</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="climtools.temporal.cal_timedelta_month">
+<span class="sig-prename descclassname"><span class="pre">climtools.temporal.</span></span><span class="sig-name descname"><span class="pre">cal_timedelta_month</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#climtools.temporal.cal_timedelta_month" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the duration for each month in each timestamp</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>time</strong> (<a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2022.3.1.dev0)"><em>xarray.DataArray</em></a>) – DataArray containing cftime.datetime Objects</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>obj: <cite>np.array</cite> of :obj: <cite>timedelta64</cite>]: [description]</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><p>[</p>
+</p>
 </dd>
 </dl>
 </dd></dl>
@@ -102,23 +581,24 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="climtools.temporal.cal_timedelta_year">
 <span class="sig-prename descclassname"><span class="pre">climtools.temporal.</span></span><span class="sig-name descname"><span class="pre">cal_timedelta_year</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#climtools.temporal.cal_timedelta_year" title="Permalink to this definition">¶</a></dt>
-<dd><p>[summary]</p>
+<dd><p>Calculates the duration for each year in each timestamp</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>time</strong> (<em>[</em><em>type</em><em>]</em>) – [description]</p>
+<dd class="field-odd"><p><strong>time</strong> (<a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2022.3.1.dev0)"><em>xarray.DataArray</em></a>) – DataArray containing cftime.datetime Objects</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>[description]</p>
+<dd class="field-even"><p>obj: <cite>np.array</cite> of :obj: <cite>timedelta64</cite>]: [description]</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>[type]</p>
+<dd class="field-odd"><p><p>[</p>
+</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="climtools.temporal.gen_time_bnds_stmp">
-<span class="sig-prename descclassname"><span class="pre">climtools.temporal.</span></span><span class="sig-name descname"><span class="pre">gen_time_bnds_stmp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resample</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#climtools.temporal.gen_time_bnds_stmp" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">climtools.temporal.</span></span><span class="sig-name descname"><span class="pre">gen_time_bnds_stmp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_resolution</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#climtools.temporal.gen_time_bnds_stmp" title="Permalink to this definition">¶</a></dt>
 <dd><p>[summary]</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -155,7 +635,7 @@
 <dd><p>Checks whether a given cf.Datetime is actually a leap year. Function based on <a class="reference external" href="https://github.com/Unidata/cftime/blob/master/src/cftime/_cftime.pyx">https://github.com/Unidata/cftime/blob/master/src/cftime/_cftime.pyx</a></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>time</strong> (<em>cftime.Datetime</em>) – Datetime to check</p>
+<dd class="field-odd"><p><strong>time</strong> (<a class="reference external" href="https://unidata.github.io/cftime/api.html#cftime.datetime" title="(in cftime)"><em>cftime.datetime</em></a>) – Datetime to check</p>
 </dd>
 </dl>
 </dd></dl>
@@ -167,15 +647,15 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>data</strong> (<em>xarray.Dataset</em>) – Input Dataset. Must contain dimension time as well as the variable time_bnds for inferring the resolution</p></li>
+<li><p><strong>data</strong> (<a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2022.3.1.dev0)"><em>xarray.Dataset</em></a>) – Input Dataset. Must contain dimension time as well as the variable time_bnds for inferring the resolution</p></li>
 <li><p><strong>target_resolution</strong> (<em>string</em>) – Target Resolution.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>[description]</p>
+<dd class="field-even"><p>Dataset with a new temporal resolution</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>[type]</p>
+<dd class="field-odd"><p><a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2022.3.1.dev0)">xarray.Dataset</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -184,14 +664,70 @@
 <section id="module-climtools.utils">
 <span id="climtools-utils-module"></span><h2>climtools.utils module<a class="headerlink" href="#module-climtools.utils" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">
+<dt class="sig sig-object py" id="climtools.utils.add_history">
+<span class="sig-prename descclassname"><span class="pre">climtools.utils.</span></span><span class="sig-name descname"><span class="pre">add_history</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">processing_message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#climtools.utils.add_history" title="Permalink to this definition">¶</a></dt>
+<dd><p>Appends  a new message with timestamp to the history attribute of a dataset</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2022.3.1.dev0)"><em>xarray.Dataset</em></a><em> or </em><a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2022.3.1.dev0)"><em>xarray.DataArray</em></a>) – dataset or dataarray for which history is to be changed</p></li>
+<li><p><strong>processing_message</strong> (<em>str</em>) – Message describing the processing step</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="climtools.utils.add_processing_attributes">
+<span class="sig-prename descclassname"><span class="pre">climtools.utils.</span></span><span class="sig-name descname"><span class="pre">add_processing_attributes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">processing_message</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">processing_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#climtools.utils.add_processing_attributes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Changes history and table_id attributes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2022.3.1.dev0)"><em>xarray.Dataset</em></a><em> or </em><a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2022.3.1.dev0)"><em>xarray.DataArray</em></a>) – </p></li>
+<li><p><strong>processing_message</strong> (<em>string</em>) – Message describing the processing step</p></li>
+<li><p><strong>processing_id</strong> (<em>string</em>) – ID indicative of the processing step</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="climtools.utils.add_table_id">
+<span class="sig-prename descclassname"><span class="pre">climtools.utils.</span></span><span class="sig-name descname"><span class="pre">add_table_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">processing_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#climtools.utils.add_table_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>_summary_</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>xarray</em><em>,</em><em>Dataset</em><em> or </em><a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2022.3.1.dev0)"><em>xarray.DataArray</em></a>) – Dataset or array for which the table_id needs to be changed</p></li>
+<li><p><strong>processing_id</strong> (<em>str</em>) – ID indicative of the processing step</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="climtools.utils.cal_weighting_factor">
+<span class="sig-prename descclassname"><span class="pre">climtools.utils.</span></span><span class="sig-name descname"><span class="pre">cal_weighting_factor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dimensions</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#climtools.utils.cal_weighting_factor" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>[</em><em>type</em><em>]</em>) – [description]</p></li>
+<li><p><strong>dimension</strong> (<em>[</em><em>type</em><em>]</em>) – [description]</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="climtools.utils.decompose_dependent_variables">
-<span class="sig-prename descclassname"><span class="pre">climtools.utils.</span></span><span class="sig-name descname"><span class="pre">decompose_dependent_variables</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dimension</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#climtools.utils.decompose_dependent_variables" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">climtools.utils.</span></span><span class="sig-name descname"><span class="pre">decompose_dependent_variables</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dimensions</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#climtools.utils.decompose_dependent_variables" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns all variables of a dataset that depend on a specified dimension</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>data</strong> (<em>xarray.Dataset</em>) – Dataset to be analysed</p></li>
-<li><p><strong>dimension</strong> (<em>string</em>) – Name of the dimension</p></li>
+<li><p><strong>data</strong> (<a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2022.3.1.dev0)"><em>xarray.Dataset</em></a>) – Dataset to be analysed</p></li>
+<li><p><strong>dimension</strong> (<em>tuple</em>) – Name of the dimension</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -199,6 +735,43 @@
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="climtools.utils.func_attrs_to_dims">
+<span class="sig-prename descclassname"><span class="pre">climtools.utils.</span></span><span class="sig-name descname"><span class="pre">func_attrs_to_dims</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attribute_keys</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#climtools.utils.func_attrs_to_dims" title="Permalink to this definition">¶</a></dt>
+<dd><p>_summary_</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>attribute_keys</strong> (<em>_type_</em>) – _description_</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>_description_</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>_type_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="climtools.utils.pre_attrs_to_dims">
+<span class="sig-prename descclassname"><span class="pre">climtools.utils.</span></span><span class="sig-name descname"><span class="pre">pre_attrs_to_dims</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attribute_keys</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#climtools.utils.pre_attrs_to_dims" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds attributes of a given Dataset as dimensions</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ds</strong> (<em>xarray.Dataset/xarray.DataArray</em>) – </p></li>
+<li><p><strong>attribute_keys</strong> (<em>list of str</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>_description_</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2022.3.1.dev0)">xarray.Dataset</a> or <a class="reference external" href="https://xarray.pydata.org/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2022.3.1.dev0)">xarray.DataArray</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -226,11 +799,22 @@
 
 
 <h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">climtools</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">climtools package</a></li>
+</ul>
+</li>
+</ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">climtools</a><ul>
+      <li>Previous: <a href="modules.html" title="previous chapter">climtools</a></li>
+      <li>Next: <a href="climtools.tests.html" title="next chapter">climtools.tests package</a></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>

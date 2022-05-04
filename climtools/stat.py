@@ -7,12 +7,12 @@ def gen_seasonal_cycle(start, end, frequency):
     """Generates an artifical seasonal cycle for times between a given start and endpoint with a given frequncy
 
     Args:
-        start (cftime.Datetime): Beginning of the period
-        end (cftime.Datetime): End of the period
+        start (cftime.datetime): Beginning of the period
+        end (cftime.datetime): End of the period
         frequency (string): 
 
     Returns:
-        xarray.Dataset: Dataset containing seasonal cycle
+        xarray.Dataset: Dataset containing seasonal cycles
     """
     
     times_bnds = generate_timeseries(start, end, frequency)
@@ -76,7 +76,7 @@ def cal_weighted_mean(data, weights):
         weights (xarray.DataArray): Dataset of weights. Dimension of weights determine the average dimensions
 
     Returns:
-        xarray Dataset: weighted mean over given dimension
+        xarray.Dataset: weighted mean over given dimension
     """
 
     weights_dimensions = weights.dims

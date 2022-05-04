@@ -1,8 +1,64 @@
 climtools package
 =================
 
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   climtools.tests
+
 Submodules
 ----------
+
+climtools.cmor module
+---------------------
+
+.. automodule:: climtools.cmor
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+climtools.multiindex module
+---------------------------
+
+.. automodule:: climtools.multiindex
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+climtools.physical module
+-------------------------
+
+.. automodule:: climtools.physical
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+climtools.processing module
+---------------------------
+
+.. automodule:: climtools.processing
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+climtools.spatial module
+------------------------
+
+.. automodule:: climtools.spatial
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+climtools.spatial\_datagenerator module
+---------------------------------------
+
+.. automodule:: climtools.spatial_datagenerator
+   :members:
+   :undoc-members:
+   :show-inheritance:
 
 climtools.stat module
 ---------------------
