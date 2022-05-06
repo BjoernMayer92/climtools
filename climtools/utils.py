@@ -110,3 +110,11 @@ def func_attrs_to_dims(attribute_keys):
         _type_: _description_
     """
     return lambda ds: pre_attrs_to_dims(ds, attribute_keys)
+
+def pre_coords_to_dims(ds, coord_keys):
+    for key in coord_keys:
+        ds = ds.expand_dims(key)
+    return ds
+
+def func_coords_to_dims(coord_keys):
+    return lambda ds: pre_coords_to_dims(ds, coord_keys)
